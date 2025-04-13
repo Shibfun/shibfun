@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShibFun Bot Guide</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to bottom, #fff8e1, #ffecb3);
+            color: #4a2c00;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            color: #d2691e;
+            font-size: 28px;
+            margin: 10px 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #8b4513;
+            font-size: 20px;
+            margin: 20px 0 10px;
+            border-left: 4px solid #ffa500;
+            padding-left: 10px;
+        }
+        p {
+            margin: 8px 0;
+            color: #4a2c00;
+            font-size: 16px;
+        }
+        #status {
+            text-align: center;
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        #userInfo {
+            background: #fffaf0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px dashed #ffa500;
+            text-align: center;
+        }
+        #userInfo p {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+        .lang-toggle {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .lang-toggle button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            background: #d2691e;
+            color: #fff;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .lang-toggle button:hover {
+            background: #ff4500;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .command-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #fffaf0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .command-table th, .command-table td {
+            border: 1px solid #ffd700;
+            padding: 10px;
+            font-size: 14px;
+            text-align: left;
+        }
+        .command-table th {
+            background: #ffa500;
+            color: #fff;
+        }
+        .command-table td {
+            background: #fff;
+        }
+        .success {
+            background: #90ee90;
+            color: #006400;
+        }
+        .error {
+            background: #ffcccb;
+            color: #8b0000;
+        }
+        .hidden {
+            display: none;
+        }
+        .shiba-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/5vXz7qS.png') no-repeat top center;
+            background-size: 120px;
+            opacity: 0.08;
+            z-index: -1;
+        }
+        .paw-icon::before {
+            content: '🐾 ';
+            font-size: 18px;
+        }
+        .bone-icon::before {
+            content: '🦴 ';
+            font-size: 18px;
+        }
+        .tip-box {
+            background: #fffacd;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #ff8c00;
+        }
+        code {
+            background: #f0e68c;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #8b4513;
+        }
+        @media (max-width: 400px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 18px;
+            }
+            .command-table th, .command-table td {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="shiba-bg"></div>
+        <h1 id="title">ShibFun Bot Guide</h1>
+        <div id="status">Loading...</div>
+        <div id="userInfo">
+            <h2 class="paw-icon">Your Shiba Profile</h2>
+            <p><b>Username</b>: <span id="userName">Loading...</span></p>
+            <p><b>User ID</b>: <span id="userId">Loading...</span></p>
+            <p><b>First Name</b>: <span id="firstName">Loading...</span></p>
+            <p><b>Last Name</b>: <span id="lastName">Loading...</span></p>
+        </div>
+        <div class="lang-toggle">
+            <button onclick="switchLanguage('en')">English</button>
+            <button onclick="switchLanguage('zh')">中文</button>
+        </div>
+
+        <!-- English Content -->
+        <div id="content-en" class="content">
+            <div class="section">
+                <h2 class="paw-icon">Welcome to ShibFun!</h2>
+                <p>Hey, Shiba pal! ShibFun Bot lets you trade tokens on Shibarium, earn HAM rewards, and have a tail-wagging good time. Your username, <b><span id="userNameInlineEn">Loading...</span></b>, is your key to the fun!</p>
+            </div>
+            <div class="section">
+                <h2 class="paw-icon">Get Started</h2>
+                <p>1. Bark at <b>@ShibFun_bot</b> in Telegram to join the pack.</p>
+                <p>2. Your username unlocks wallets and trades.</p>
+                <p>3. Switch languages with the buttons above. Woof woof!</p>
+            </div>
+            <div class="section">
+                <h2 class="bone-icon">Paw-some Features</h2>
+                <p><b>Shiba Wallet</b></p>
+                <p>- <b>Dig a Wallet</b>: Get one with <code>/generatewallet</code> in private chat.</p>
+                <p>- <b>Check Wallet</b>: Peek at it with <code>/mywallet</code>.</p>
+                <p>- <b>Count Treats</b>: See BONE and tokens with <code>/balance</code>.</p>
+                <p><b>Trading Fun</b></p>
+                <p>- <b>Buy Tokens</b>: Grab some with <code>/buy <amount> BONE of <token></code> (e.g., <code>/buy 1 BONE of WOOF</code>).</p>
+                <p>- <b>Sell Tokens</b>: Swap back with <code>/sell <amount> <token></code> (e.g., <code>/sell 100 WOOF</code>).</p>
+                <p>- <b>Share Bones</b>: Toss to friends with <code>@username tip <amount> <token></code> (e.g., <code>@Friend tip 0.5 BONE</code>).</p>
+                <p><b>HAM Rewards</b></p>
+                <p>- <b>Daily Bark</b>: Say <code>mint</code> in a group for 10 HAM every 20 hours.</p>
+                <p>- <b>Fetch Pals</b>: Use <code>/invite</code> to share a link and earn 1 HAM per join.</p>
+                <p>- <b>HAM Treats</b>: Share with <code>/redpacket <amount> <people></code> (e.g., <code>/redpacket 100 5</code>).</p>
+                <p>- <b>Token Treats</b>: Spread tokens with <code>/<token> <amount> <limit></code> (e.g., <code>/WOOF 10 5</code>).</p>
+                <p><b>Your Dog Tag</b></p>
+                <p>- <b>Profile</b>: Check HAM, wallet, and invites with <code>/myinfo</code>.</p>
+                <p>- <b>Add Wallet</b>: Use <code>/setwallet <address></code> for external wallets.</p>
+            </div>
+            <div class="section">
+                <h2 class="paw-icon">Commands</h2>
+                <table class="command-table">
+                    <tr><th>Command</th><th>What It Does</th></tr>
+                    <tr><td><code>/generatewallet</code></td><td>Dig up a wallet (private)</td></tr>
+                    <tr><td><code>/mywallet</code></td><td>Check your wallet (private)</td></tr>
+                    <tr><td><code>/balance</code></td><td>See BONE/token balances</td></tr>
+                    <tr><td><code>/buy <amount> BONE of <token></code></td><td>Buy tokens</td></tr>
+                    <tr><td><code>/sell <amount> <token></code></td><td>Sell tokens</td></tr>
+                    <tr><td><code>@username tip <amount> <token></code></td><td>Tip tokens</td></tr>
+                    <tr><td><code>mint</code></td><td>Earn 10 HAM (group)</td></tr>
+                    <tr><td><code>/invite</code></td><td>Get invite link</td></tr>
+                    <tr><td><code>/myinfo</code></td><td>View profile</td></tr>
+                    <tr><td><code>/setwallet <address></code></td><td>Set external wallet</td></tr>
+                    <tr><td><code>/redpacket <amount> <people></code></td><td>Share HAM packet</td></tr>
+                    <tr><td><code>/<token> <amount> <limit></code></td><td>Share token packet</td></tr>
+                    <tr><td><code>/help</code></td><td>Show all commands</td></tr>
+                </table>
+            </div>
+            <div class="section">
+                <h2 class="bone-icon">Shiba Tips</h2>
+                <div class="tip-box">
+                    <p>- Set a Telegram username to join the fun!</p>
+                    <p>- Keep your wallet’s private key safe.</p>
+                    <p>- Bark with <code>mint</code> every 20 hours for HAM.</p>
+                    <p>- Need help? Use <code>/help</code> or wag at the admins!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chinese Content -->
+        <div id="content-zh" class="content hidden">
+            <div class="section">
+                <h2 class="paw-icon">欢迎体验 ShibFun！</h2>
+                <p>嗨，柴犬小伙伴！ShibFun Bot 让你在 Shibarium 上交易代币、赚取 HAM 奖励，享受无穷乐趣！你的用户名 <b><span id="userNameInlineZh">加载中...</span></b> 是开启冒险的钥匙！</p>
+            </div>
+            <div class="section">
+                <h2 class="paw-icon">开始冒险</h2>
+                <p>1. 在 Telegram 中对 <b>@ShibFun_bot</b> 汪一声即可加入。</p>
+                <p>2. 你的用户名将用于钱包和交易。</p>
+                <p>3. 使用上方按钮切换语言，汪汪！</p>
+            </div>
+            <div class="section">
+                <h2 class="bone-icon">超棒功能</h2>
+                <p><b>柴犬钱包</b></p>
+                <p>- <b>挖个钱包</b>：在私聊中使用 <code>/generatewallet</code> 创建钱包。</p>
+                <p>- <b>查看钱包</b>：用 <code>/mywallet</code> 偷偷瞄一眼。</p>
+                <p>- <b>数骨头</b>：用 <code>/balance</code> 查看 BONE 和代币余额。</p>
+                <p><b>交易乐趣</b></p>
+                <p>- <b>买代币</b>：用 <code>/buy <数量> BONE of <代币></code> 抢购（例如：<code>/buy 1 BONE of WOOF</code>）。</p>
+                <p>- <b>卖代币</b>：用 <code>/sell <数量> <代币></code> 换回（例如：<code>/sell 100 WOOF</code>）。</p>
+                <p>- <b>分享骨头</b>：用 <code>@用户名 tip <数量> <代币></code> 送给朋友（例如：<code>@Friend tip 0.5 BONE</code>）。</p>
+                <p><b>HAM 奖励</b></p>
+                <p>- <b>每日汪汪</b>：在群聊中用 <code>mint</code> 每 20 小时赚 10 HAM。</p>
+                <p>- <b>邀请伙伴</b>：用 <code>/invite</code> 分享链接，每人加入赚 1 HAM。</p>
+                <p>- <b>HAM 红包</b>：用 <code>/redpacket <数量> <人数></code> 分享（例如：<code>/redpacket 100 5</code>）。</p>
+                <p>- <b>代币红包</b>：用 <code>/<代币> <数量> <人数></code> 分发（例如：<code>/WOOF 10 5</code>）。</p>
+                <p><b>你的狗牌</b></p>
+                <p>- <b>个人资料</b>：用 <code>/myinfo</code> 查看 HAM、钱包和邀请信息。</p>
+                <p>- <b>添加钱包</b>：用 <code>/setwallet <地址></code> 设置外部钱包。</p>
+            </div>
+            <div class="section">
+                <h2 class="paw-icon">命令列表</h2>
+                <table class="command-table">
+                    <tr><th>命令</th><th>功能</th></tr>
+                    <tr><td><code>/generatewallet</code></td><td>创建钱包（私聊）</td></tr>
+                    <tr><td><code>/mywallet</code></td><td>查看钱包（私聊）</td></tr>
+                    <tr><td><code>/balance</code></td><td>查看余额</td></tr>
+                    <tr><td><code>/buy <数量> BONE of <代币></code></td><td>购买代币</td></tr>
+                    <tr><td><code>/sell <数量> <代币></code></td><td>出售代币</td></tr>
+                    <tr><td><code>@用户名 tip <数量> <代币></code></td><td>转账代币</td></tr>
+                    <tr><td><code>mint</code></td><td>签到赚 10 HAM（群聊）</td></tr>
+                    <tr><td><code>/invite</code></td><td>获取邀请链接</td></tr>
+                    <tr><td><code>/myinfo</code></td><td>查看资料</td></tr>
+                    <tr><td><code>/setwallet <地址></code></td><td>设置外部钱包</td></tr>
+                    <tr><td><code>/redpacket <数量> <人数></code></td><td>分享 HAM 红包</td></tr>
+                    <tr><td><code>/<代币> <数量> <人数></code></td><td>分享代币红包</td></tr>
+                    <tr><td><code>/help</code></td><td>显示所有命令</td></tr>
+                </table>
+            </div>
+            <div class="section">
+                <h2 class="bone-icon">柴犬小贴士</h2>
+                <div class="tip-box">
+                    <p>- 设置 Telegram 用户名才能玩得尽兴！</p>
+                    <p>- 保护好钱包的私钥，别让它跑丢。</p>
+                    <p>- 每 20 小时用 <code>mint</code> 汪一声赚 HAM。</p>
+                    <p>- 有疑问？用 <code>/help</code> 或找管理员汪汪！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        const status = document.getElementById('status');
+        const updateInfo = (key, value) => {
+            document.getElementById(key).innerText = value;
+        };
+
+        // Initialize Telegram WebApp
+        try {
+            if (!window.Telegram || !window.Telegram.WebApp) {
+                throw new Error("Please open in Telegram.");
+            }
+
+            const Telegram = window.Telegram.WebApp;
+            Telegram.ready();
+
+            const user = Telegram.initDataUnsafe?.user;
+            if (!user || !user.id) {
+                throw new Error("No user data available.");
+            }
+
+            updateInfo("userId", user.id);
+            updateInfo("userName", user.username ? `@${user.username}` : "Not set");
+            updateInfo("firstName", user.first_name || "Not set");
+            updateInfo("lastName", user.last_name || "Not set");
+            updateInfo("userNameInlineEn", user.username ? `@${user.username}` : "Not set");
+            updateInfo("userNameInlineZh", user.username ? `@${user.username}` : "未设置");
+
+            status.innerText = "Ready to Bark!";
+            status.className = "success";
+        } catch (error) {
+            status.innerText = `Oops: ${error.message}`;
+            status.className = "error";
+        }
+
+        // Language Switching
+        function switchLanguage(lang) {
+            const enContent = document.getElementById("content-en");
+            const zhContent = document.getElementById("content-zh");
+            const title = document.getElementById("title");
+
+            if (lang === "en") {
+                enContent.classList.remove("hidden");
+                zhContent.classList.add("hidden");
+                title.innerText = "ShibFun Bot Guide";
+            } else {
+                enContent.classList.add("hidden");
+                zhContent.classList.remove("hidden");
+                title.innerText = "ShibFun Bot 使用指南";
+            }
+        }
+
+        // Default to English
+        switchLanguage("en");
+    </script>
+</body>
+</html>
